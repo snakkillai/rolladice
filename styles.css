@@ -169,23 +169,26 @@ select:focus {
 /* Buttons */
 .buttons {
     display: flex;
-    gap: 15px;
+    gap: 10px;
     margin-bottom: 25px;
     justify-content: center;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
 }
 
 button {
-    padding: 15px 25px;
+    padding: 12px 20px;
     border: none;
     border-radius: 10px;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: bold;
     cursor: pointer;
     transition: all 0.3s ease;
     box-shadow: var(--shadow-light);
     text-transform: uppercase;
     letter-spacing: 1px;
+    flex: 1;
+    min-width: 0;
+    white-space: nowrap;
 }
 
 .primary-btn {
@@ -616,13 +619,12 @@ button:disabled {
     }
     
     .buttons {
-        flex-direction: column;
-        align-items: center;
+        gap: 8px;
     }
     
     button {
-        width: 100%;
-        max-width: 250px;
+        padding: 10px 15px;
+        font-size: 12px;
     }
     
     .stats-section {
