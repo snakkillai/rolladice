@@ -91,7 +91,7 @@ body {
     padding: 16px;
     box-shadow: var(--shadow-heavy);
     max-width: 500px;
-    max-height: 750px;
+    max-height: none;
     width: 100%;
     backdrop-filter: blur(10px);
     overflow-y: auto;
