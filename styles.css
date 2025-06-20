@@ -673,30 +673,58 @@ button:disabled {
     }
     
     .app-header h1 {
-        font-size: 1.5em;
+        font-size: 1.3em;
     }
     
     .dice-container {
-        padding: 20px;
+        padding: 15px;
         margin: 10px;
     }
     
+    /* Keep controls horizontal on mobile */
     .controls {
-        flex-direction: column;
+        flex-direction: row;
+        gap: 8px;
+        flex-wrap: nowrap;
+    }
+    
+    .control-group {
+        flex: 1;
+        min-width: 0;
+    }
+    
+    label {
+        font-size: 0.9em;
+        margin-bottom: 6px;
+    }
+    
+    select {
+        padding: 8px;
+        font-size: 14px;
     }
     
     .buttons {
-        gap: 8px;
+        gap: 6px;
+        flex-wrap: wrap;
     }
     
     button {
         padding: 10px 15px;
         font-size: 12px;
+        min-width: 80px;
     }
     
     .stats-section {
-        flex-direction: column;
-        gap: 10px;
+        margin-bottom: 10px;
+        padding: 6px;
+    }
+    
+    .stat-label {
+        font-size: 0.6em;
+    }
+    
+    .stat-value {
+        font-size: 0.75em;
     }
     
     .dice-result {
