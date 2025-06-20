@@ -76,13 +76,15 @@ document.addEventListener('DOMContentLoaded', function() {
             
             diceFace.appendChild(dotsContainer);
         } else {
-            // For other dice types, show number with enhanced styling
+            // For other dice types, show number with enhanced blue styling
             const numberElement = document.createElement('div');
             numberElement.className = 'dice-number';
             numberElement.textContent = value;
             
-            // Add text shadow for 3D effect
-            numberElement.style.textShadow = '2px 2px 4px rgba(0, 0, 0, 0.5), 1px 1px 2px rgba(255, 255, 255, 0.2)';
+            // Enhanced styling for better visibility
+            numberElement.style.color = '#0066cc';
+            numberElement.style.textShadow = '1px 1px 2px rgba(255, 255, 255, 0.8), 0 0 4px rgba(0, 102, 204, 0.3)';
+            numberElement.style.fontWeight = 'bold';
             
             diceFace.appendChild(numberElement);
         }

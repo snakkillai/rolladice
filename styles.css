@@ -137,6 +137,8 @@ body {
     font-size: 1.15em; /* Increased by 20% from 0.96em (which was already +50%) */
     font-weight: bold; /* Made bold */
     white-space: nowrap;
+    text-align: center;
+    width: 100%;
 }
 
 .stat-value {
@@ -144,6 +146,9 @@ body {
     font-size: 1.44em; /* Increased by 20% from 1.2em (which was already +50%) */
     font-weight: bold;
     white-space: nowrap;
+    text-align: center;
+    width: 100%;
+    min-width: 60px; /* Ensures space for larger numbers */
 }
 
 /* Controls - Modified to be horizontal */
@@ -376,8 +381,8 @@ button:disabled {
 .dice-number {
     font-size: 18px; /* Increased by 50% from 12px */
     font-weight: bold;
-    color: var(--text-dark);
-    text-shadow: 1.5px 1.5px 3px rgba(0, 0, 0, 0.3); /* Increased by 50% */
+    color: #0066cc; /* Changed to blue for better visibility */
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8); /* White shadow for contrast */
 }
 
 /* Modified Total Section - Fixed horizontal layout */
@@ -726,10 +731,15 @@ button:disabled {
     .stat-label {
         font-size: 1.08em; /* Increased by 20% from 0.9em (mobile version) */
         font-weight: bold; /* Made bold */
+        text-align: center;
+        width: 100%;
     }
     
     .stat-value {
         font-size: 1.34em; /* Increased by 20% from 1.12em (mobile version) */
+        text-align: center;
+        width: 100%;
+        min-width: 50px; /* Mobile spacing for larger numbers */
     }
     
     .dice-result {
