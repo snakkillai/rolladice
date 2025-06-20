@@ -106,16 +106,19 @@ body {
     background: rgba(255, 255, 255, 0.1);
     border-radius: 8px;
     flex-wrap: nowrap;
+    width: 100%;
 }
 
 .stat-item {
     text-align: center;
     flex: 1;
     min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .stat-label {
-    display: block;
     color: var(--accent-light);
     font-size: 0.64em;
     margin-bottom: 2.4px;
@@ -123,7 +126,6 @@ body {
 }
 
 .stat-value {
-    display: block;
     color: var(--accent-color);
     font-size: 0.8em;
     font-weight: bold;
