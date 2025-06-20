@@ -12,8 +12,11 @@
     --accent-bright: #FFD700;
     --text-dark: #654321;
     --dice-bg: linear-gradient(145deg, #F5DEB3, #DEB887);
+    --dice-3d-light: #F8E6B8;
+    --dice-3d-dark: #C8953F;
     --shadow-light: 0 4px 8px rgba(0, 0, 0, 0.2);
     --shadow-heavy: 0 8px 16px rgba(0, 0, 0, 0.4);
+    --shadow-3d: 0 6px 12px rgba(0, 0, 0, 0.4), inset 0 2px 4px rgba(255, 255, 255, 0.3), inset 0 -2px 4px rgba(0, 0, 0, 0.2);
 }
 
 body {
@@ -251,27 +254,54 @@ button:disabled {
 .dice-results {
     display: flex;
     flex-wrap: wrap;
-    gap: 1.6px;
+    gap: 6px;
     justify-content: center;
-    margin-bottom: 2px;
+    margin-bottom: 15px;
 }
 
+/* 3D Dice with rounded edges - 30% smaller and rectangular */
 .dice-result {
-    background: var(--dice-bg);
-    border: 0.6px solid var(--accent-color);
-    border-radius: 3px;
-    width: 16px;
-    height: 16px;
+    background: linear-gradient(145deg, var(--dice-3d-light), var(--dice-bg), var(--dice-3d-dark));
+    border: 2px solid var(--accent-color);
+    border-radius: 15px;
+    width: 42px; /* Reduced by 30% from ~60px and made rectangular */
+    height: 30px; /* Rectangular shape, reduced by 30% */
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 7px;
+    font-size: 8px;
     font-weight: bold;
     color: var(--text-dark);
     text-align: center;
-    box-shadow: 0 0.8px 1.6px rgba(0, 0, 0, 0.3);
+    box-shadow: var(--shadow-3d);
     position: relative;
     animation: rollIn 0.6s ease-out;
+    transform-style: preserve-3d;
+}
+
+/* Enhanced 3D effect */
+.dice-result::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    right: -1px;
+    bottom: -1px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0.1) 50%, rgba(0,0,0,0.1) 100%);
+    border-radius: 15px;
+    z-index: -1;
+}
+
+.dice-result::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    width: 8px;
+    height: 8px;
+    background: radial-gradient(circle, rgba(0,0,0,0.3), transparent);
+    border-radius: 50%;
+    z-index: -2;
 }
 
 .dice-result.rolling {
@@ -291,30 +321,35 @@ button:disabled {
     display: grid;
     width: 100%;
     height: 100%;
-    padding: 1.6px;
+    padding: 2px;
     place-items: center;
 }
 
+/* Dice dots - 30px as requested */
 .dice-dot {
-    width: 10px; /* Increased from 1px to 10px (10 times bigger) */
-    height: 10px; /* Increased from 1px to 10px (10 times bigger) */
-    background-color: var(--text-dark);
+    width: 30px;
+    height: 30px;
+    background: radial-gradient(circle, var(--text-dark) 0%, #4a3118 70%, #3a2510 100%);
     border-radius: 50%;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    box-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.4),
+        inset 0 1px 2px rgba(255, 255, 255, 0.2),
+        inset 0 -1px 2px rgba(0, 0, 0, 0.3);
+    transform: scale(0.12); /* Scale down to fit in the smaller rectangular dice */
 }
 
-/* Dice dot patterns */
-.dice-1 { grid-template: 1fr 1fr 1fr / 1fr 1fr 1fr; }
-.dice-1 .dice-dot:nth-child(1) { grid-area: 2 / 2; justify-self: center; align-self: center; }
+/* Dice dot patterns - adjusted for rectangular shape */
+.dice-1 { grid-template: 1fr / 1fr; }
+.dice-1 .dice-dot:nth-child(1) { grid-area: 1 / 1; justify-self: center; align-self: center; }
 
-.dice-2 { grid-template: 1fr 1fr 1fr / 1fr 1fr 1fr; }
+.dice-2 { grid-template: 1fr 1fr / 1fr; }
 .dice-2 .dice-dot:nth-child(1) { grid-area: 1 / 1; justify-self: center; align-self: center; }
-.dice-2 .dice-dot:nth-child(2) { grid-area: 3 / 3; justify-self: center; align-self: center; }
+.dice-2 .dice-dot:nth-child(2) { grid-area: 2 / 1; justify-self: center; align-self: center; }
 
-.dice-3 { grid-template: 1fr 1fr 1fr / 1fr 1fr 1fr; }
+.dice-3 { grid-template: 1fr 1fr 1fr / 1fr; }
 .dice-3 .dice-dot:nth-child(1) { grid-area: 1 / 1; justify-self: center; align-self: center; }
-.dice-3 .dice-dot:nth-child(2) { grid-area: 2 / 2; justify-self: center; align-self: center; }
-.dice-3 .dice-dot:nth-child(3) { grid-area: 3 / 3; justify-self: center; align-self: center; }
+.dice-3 .dice-dot:nth-child(2) { grid-area: 2 / 1; justify-self: center; align-self: center; }
+.dice-3 .dice-dot:nth-child(3) { grid-area: 3 / 1; justify-self: center; align-self: center; }
 
 .dice-4 { grid-template: 1fr 1fr / 1fr 1fr; }
 .dice-4 .dice-dot:nth-child(1) { grid-area: 1 / 1; justify-self: center; align-self: center; }
@@ -322,12 +357,12 @@ button:disabled {
 .dice-4 .dice-dot:nth-child(3) { grid-area: 2 / 1; justify-self: center; align-self: center; }
 .dice-4 .dice-dot:nth-child(4) { grid-area: 2 / 2; justify-self: center; align-self: center; }
 
-.dice-5 { grid-template: 1fr 1fr 1fr / 1fr 1fr 1fr; }
+.dice-5 { grid-template: 1fr 1fr 1fr / 1fr 1fr; }
 .dice-5 .dice-dot:nth-child(1) { grid-area: 1 / 1; justify-self: center; align-self: center; }
-.dice-5 .dice-dot:nth-child(2) { grid-area: 1 / 3; justify-self: center; align-self: center; }
-.dice-5 .dice-dot:nth-child(3) { grid-area: 2 / 2; justify-self: center; align-self: center; }
+.dice-5 .dice-dot:nth-child(2) { grid-area: 1 / 2; justify-self: center; align-self: center; }
+.dice-5 .dice-dot:nth-child(3) { grid-area: 2 / 1; justify-self: center; align-self: center; transform: scale(0.12) translateX(25px); }
 .dice-5 .dice-dot:nth-child(4) { grid-area: 3 / 1; justify-self: center; align-self: center; }
-.dice-5 .dice-dot:nth-child(5) { grid-area: 3 / 3; justify-self: center; align-self: center; }
+.dice-5 .dice-dot:nth-child(5) { grid-area: 3 / 2; justify-self: center; align-self: center; }
 
 .dice-6 { grid-template: 1fr 1fr 1fr / 1fr 1fr; }
 .dice-6 .dice-dot:nth-child(1) { grid-area: 1 / 1; justify-self: center; align-self: center; }
@@ -338,38 +373,46 @@ button:disabled {
 .dice-6 .dice-dot:nth-child(6) { grid-area: 3 / 2; justify-self: center; align-self: center; }
 
 .dice-number {
-    font-size: 10px;
+    font-size: 12px;
     font-weight: bold;
     color: var(--text-dark);
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
+/* Modified Total Section - Horizontal layout with 30% smaller display */
 .total-section {
     text-align: center;
-    margin-top: 5px;
+    margin-top: 10px;
+}
+
+.total-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
 }
 
 .total-label {
     color: var(--accent-color);
-    font-size: 1.3em;
+    font-size: 1.1em;
     font-weight: bold;
-    margin-bottom: 5px;
+    white-space: nowrap;
 }
 
 .total-result {
-    background: var(--dice-bg);
-    border: 4px solid var(--accent-color);
-    border-radius: 20px;
-    width: 50px;
-    height: 25px;
-    display: inline-flex;
+    background: linear-gradient(145deg, var(--dice-3d-light), var(--dice-bg), var(--dice-3d-dark));
+    border: 3px solid var(--accent-color);
+    border-radius: 15px;
+    width: 35px; /* Reduced by 30% from 50px */
+    height: 18px; /* Reduced by 30% from 25px */
+    display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 20px;
+    font-size: 14px; /* Reduced by 30% from 20px */
     font-weight: bold;
     color: var(--text-dark);
     text-align: center;
-    box-shadow: var(--shadow-heavy);
+    box-shadow: var(--shadow-3d);
     animation: pulse 0.8s ease-in-out;
     position: relative;
 }
@@ -382,7 +425,7 @@ button:disabled {
     right: -2px;
     bottom: -2px;
     background: linear-gradient(45deg, var(--accent-color), var(--accent-bright), var(--accent-color));
-    border-radius: 20px;
+    border-radius: 15px;
     z-index: -1;
 }
 
@@ -597,7 +640,7 @@ button:disabled {
 }
 
 @keyframes diceRoll {
-    0% { transform: rotateX(0deg) rotateY(0deg); }
+    0% { transform: rotateX(0deg) rotateY(0deg) scale(1); }
     25% { transform: rotateX(90deg) rotateY(90deg) scale(1.1); }
     50% { transform: rotateX(180deg) rotateY(180deg) scale(1.2); }
     75% { transform: rotateX(270deg) rotateY(270deg) scale(1.1); }
@@ -654,13 +697,17 @@ button:disabled {
     }
     
     .dice-result {
-        width: 70px;
-        height: 70px;
+        width: 35px;
+        height: 25px;
     }
     
     .total-result {
-        width: 100px;
-        height: 100px;
-        font-size: 32px;
+        width: 30px;
+        height: 15px;
+        font-size: 12px;
+    }
+    
+    .total-container {
+        gap: 8px;
     }
 }
