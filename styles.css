@@ -93,7 +93,7 @@ body {
     border-radius: 12px;
     padding: 16px;
     box-shadow: var(--shadow-heavy);
-    max-width: 500px;
+    max-width: none;
     max-height: none;
     width: 100%;
     backdrop-filter: blur(10px);
