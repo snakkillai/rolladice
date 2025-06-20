@@ -1,6 +1,8 @@
 // Simple working version of the dice app
 document.addEventListener('DOMContentLoaded', function() {
-    // Get DOM elements
+    console.log('DOM loaded, initializing dice app...');
+    
+    // Get DOM elements with error checking
     const diceTypeSelect = document.getElementById('diceType');
     const diceCountSelect = document.getElementById('diceCount');
     const rollBtn = document.getElementById('rollBtn');
@@ -11,6 +13,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const totalSection = document.getElementById('totalSection');
     const totalResult = document.getElementById('totalResult');
 
+    // Check if all elements exist
+    if (!diceTypeSelect || !diceCountSelect || !rollBtn || !diceResults) {
+        console.error('Critical DOM elements missing!');
+        return;
+    }
+    
+    console.log('All DOM elements found successfully');
+    
     // Modal elements
     const historyModal = document.getElementById('historyModal');
     const settingsModal = document.getElementById('settingsModal');
@@ -76,6 +86,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const diceType = parseInt(diceTypeSelect.value);
         const diceCount = parseInt(diceCountSelect.value);
         
+        console.log(`Rolling ${diceCount} dice of type D${diceType}`); // Debug log
+        
         // Clear previous results
         diceResults.innerHTML = '';
         totalSection.classList.add('hidden');
@@ -91,6 +103,8 @@ document.addEventListener('DOMContentLoaded', function() {
             const result = rollDice(diceType);
             results.push(result);
             total += result;
+            
+            console.log(`Die ${i + 1}: ${result}`); // Debug log
 
             // Create dice element with staggered animation
             setTimeout(() => {
@@ -98,6 +112,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 diceResults.appendChild(diceElement);
             }, i * 200);
         }
+
+        console.log(`Total results: ${results.join(', ')}, Sum: ${total}`); // Debug log
 
         // Show total after all dice finish rolling
         setTimeout(() => {
@@ -277,8 +293,21 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Initialize display
+    // Initialize display and test selects
     updateDisplay();
+    
+    // Test that selects are working
+    console.log('Initial dice type:', diceTypeSelect.value);
+    console.log('Initial dice count:', diceCountSelect.value);
+    
+    // Add change listeners to debug
+    diceTypeSelect.addEventListener('change', function() {
+        console.log('Dice type changed to:', this.value);
+    });
+    
+    diceCountSelect.addEventListener('change', function() {
+        console.log('Dice count changed to:', this.value);
+    });
 
     console.log('Dice app initialized successfully!');
 });
