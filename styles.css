@@ -250,25 +250,25 @@ button:disabled {
 .dice-results {
     display: flex;
     flex-wrap: wrap;
-    gap: 3.2px;
+    gap: 1.6px;
     justify-content: center;
     margin-bottom: 12px;
 }
 
 .dice-result {
     background: var(--dice-bg);
-    border: 1.2px solid var(--accent-color);
-    border-radius: 6px;
-    width: 26px;
-    height: 26px;
+    border: 0.6px solid var(--accent-color);
+    border-radius: 3px;
+    width: 13px;
+    height: 13px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 11.2px;
+    font-size: 5.6px;
     font-weight: bold;
     color: var(--text-dark);
     text-align: center;
-    box-shadow: 0 1.6px 3.2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0.8px 1.6px rgba(0, 0, 0, 0.3);
     position: relative;
     animation: rollIn 0.6s ease-out;
 }
@@ -290,16 +290,16 @@ button:disabled {
     display: grid;
     width: 100%;
     height: 100%;
-    padding: 3.2px;
+    padding: 1.6px;
     place-items: center;
 }
 
 .dice-dot {
-    width: 3.2px;
-    height: 3.2px;
+    width: 1.6px;
+    height: 1.6px;
     background-color: var(--text-dark);
     border-radius: 50%;
-    box-shadow: 0 0.4px 0.8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0.2px 0.4px rgba(0, 0, 0, 0.3);
 }
 
 /* Dice dot patterns */
