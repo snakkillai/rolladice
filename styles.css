@@ -105,11 +105,13 @@ body {
     padding: 8px;
     background: rgba(255, 255, 255, 0.1);
     border-radius: 8px;
+    flex-wrap: nowrap;
 }
 
 .stat-item {
     text-align: center;
     flex: 1;
+    min-width: 0;
 }
 
 .stat-label {
@@ -117,6 +119,7 @@ body {
     color: var(--accent-light);
     font-size: 0.64em;
     margin-bottom: 2.4px;
+    white-space: nowrap;
 }
 
 .stat-value {
@@ -124,6 +127,7 @@ body {
     color: var(--accent-color);
     font-size: 0.8em;
     font-weight: bold;
+    white-space: nowrap;
 }
 
 /* Controls */
