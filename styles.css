@@ -295,8 +295,8 @@ button:disabled {
 }
 
 .dice-dot {
-    width: 1.6px;
-    height: 1.6px;
+    width: 3.6px;
+    height: 3.6px;
     background-color: var(--text-dark);
     border-radius: 50%;
     box-shadow: 0 0.2px 0.4px rgba(0, 0, 0, 0.3);
