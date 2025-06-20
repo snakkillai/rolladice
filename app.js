@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Add slight random positioning for more natural look
                 const offsetX = (Math.random() - 0.5) * 2;
                 const offsetY = (Math.random() - 0.5) * 2;
-                dot.style.transform = `scale(0.12) translate(${offsetX}px, ${offsetY}px)`;
+                dot.style.transform = `scale(0.25) translate(${offsetX}px, ${offsetY}px)`;
                 
                 dotsContainer.appendChild(dot);
             }
