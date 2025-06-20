@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#654321">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Roll Dice">
+    <meta name="mobile-web-app-capable" content="yes">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- Favicon and App Icons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
+    
+    <title>Roll The Dice App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- App Header -->
+    <header class="app-header">
+        <div class="header-content">
+            <h1>🎲 Roll The Dice 🎲</h1>
+            <div class="app-info">
+                <span class="version">v1.0</span>
+                <button id="settingsBtn" class="settings-btn">⚙️</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main App Container -->
+    <main class="app-main">
+        <div class="dice-container">
+            <!-- Game Statistics -->
+            <div class="stats-section" id="statsSection">
+                <div class="stat-item">
+                    <span class="stat-label">Rolls:</span>
+                    <span class="stat-value" id="rollCount">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Session High:</span>
+                    <span class="stat-value" id="sessionHigh">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Average:</span>
+                    <span class="stat-value" id="averageRoll">0</span>
+                </div>
+            </div>
+            
+            <!-- Controls Section -->
+            <div class="controls">
+                <div class="control-group">
+                    <label for="diceType">Dice Type:</label>
+                    <select id="diceType">
+                        <option value="4">D4</option>
+                        <option value="6" selected>D6</option>
+                        <option value="8">D8</option>
+                        <option value="10">D10</option>
+                        <option value="12">D12</option>
+                        <option value="20">D20</option>
+                        <option value="100">D100</option>
+                    </select>
+                </div>
+                
+                <div class="control-group">
+                    <label for="diceCount">Dice Count:</label>
+                    <select id="diceCount">
+                        <option value="1">1</option>
+                        <option value="2" selected>2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </div>
+            </div>
+            
+            <!-- Action Buttons -->
+            <div class="buttons">
+                <button id="rollBtn" class="primary-btn">🎲 Roll</button>
+                <button id="clearBtn" class="secondary-btn">🗑️ Clear</button>
+                <button id="historyBtn" class="secondary-btn">📊 History</button>
+            </div>
+            
+            <!-- Results Section -->
+            <div class="results">
+                <div class="dice-results" id="diceResults"></div>
+                
+                <div class="total-section hidden" id="totalSection">
+                    <div class="total-label">Total</div>
+                    <div class="total-result" id="totalResult">0</div>
+                </div>
+            </div>
+
+            <!-- Last Roll Info -->
+            <div class="last-roll-info hidden" id="lastRollInfo">
+                <p class="roll-time" id="rollTime"></p>
+                <p class="roll-details" id="rollDetails"></p>
+            </div>
+        </div>
+    </main>
+
+    <!-- History Modal -->
+    <div class="modal hidden" id="historyModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Roll History</h3>
+                <button class="close-btn" id="closeHistoryBtn">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="history-stats">
+                    <div class="history-stat">
+                        <span class="stat-number" id="totalRolls">0</span>
+                        <span class="stat-description">Total Rolls</span>
+                    </div>
+                    <div class="history-stat">
+                        <span class="stat-number" id="allTimeHigh">0</span>
+                        <span class="stat-description">All-Time High</span>
+                    </div>
+                </div>
+                <div class="history-list" id="historyList"></div>
+                <button id="clearHistoryBtn" class="danger-btn">Clear History</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div class="modal hidden" id="settingsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Settings</h3>
+                <button class="close-btn" id="closeSettingsBtn">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="setting-item">
+                    <label for="soundToggle">Sound Effects:</label>
+                    <input type="checkbox" id="soundToggle" checked>
+                </div>
+                <div class="setting-item">
+                    <label for="vibrationToggle">Vibration:</label>
+                    <input type="checkbox" id="vibrationToggle" checked>
+                </div>
+                <div class="setting-item">
+                    <label for="animationSpeed">Animation Speed:</label>
+                    <select id="animationSpeed">
+                        <option value="slow">Slow</option>
+                        <option value="normal" selected>Normal</option>
+                        <option value="fast">Fast</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay hidden" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+        <p>Rolling dice...</p>
+    </div>
+
+    <!-- PWA Install Prompt -->
+    <div class="install-prompt hidden" id="installPrompt">
+        <div class="install-content">
+            <p>Install this app for the best experience!</p>
+            <button id="installBtn" class="install-btn">Install App</button>
+            <button id="dismissInstallBtn" class="dismiss-btn">Maybe Later</button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="app.js"></script>
+    
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js')
+                    .then((registration) => {
+                        console.log('SW registered: ', registration);
+                    })
+                    .catch((registrationError) => {
+                        console.log('SW registration failed: ', registrationError);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+create using HTML, CSS, java script a Roll The Dice app. 
+Back ground color as Dark Brown Transient 
+First option would be to select the Dice Type (in mustard yellow color) with the default as D6. The drop down section in pale yellow.
+Second option to select Dice Count (in mustard yellow color) with the default as 2. The drop down section in pale yellow.
+Add two button Roll and Clear. Both are Yellow with the Inside Text in Dark Brown. 
+Click on Roll will generate the result as random numbers based on the Dice Type and Dice Count showing in separate boxes 
+the number of boxes for the result will be based on the Dice Count. Also the use a ligther color inside for the result numbers.
+Clear Button - will clear the result
+Display the sum of the numbers in the result and display as Total followed by the box with the sum.
