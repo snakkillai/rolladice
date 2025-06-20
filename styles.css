@@ -261,12 +261,12 @@ button:disabled {
     background: var(--dice-bg);
     border: 0.6px solid var(--accent-color);
     border-radius: 3px;
-    width: 7px;
-    height: 7px;
+    width: 16px;
+    height: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 3px;
+    font-size: 7px;
     font-weight: bold;
     color: var(--text-dark);
     text-align: center;
@@ -347,7 +347,7 @@ button:disabled {
 
 .total-section {
     text-align: center;
-    margin-top: 2px;
+    margin-top: 20px;
 }
 
 .total-label {
