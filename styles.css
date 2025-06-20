@@ -81,7 +81,7 @@ body {
     justify-content: center;
     align-items: center;
     padding: 16px;
-    max-height: 500px;
+    max-height: 600px;
     overflow-y: auto;
 }
 
@@ -91,7 +91,7 @@ body {
     padding: 16px;
     box-shadow: var(--shadow-heavy);
     max-width: 400px;
-    max-height: 450px;
+    max-height: 550px;
     width: 100%;
     backdrop-filter: blur(10px);
     overflow-y: auto;
