@@ -141,17 +141,18 @@ body {
     white-space: nowrap;
 }
 
-/* Controls */
+/* Controls - Modified to be horizontal */
 .controls {
     display: flex;
     gap: 12px;
     margin-bottom: 12px;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    align-items: flex-end;
 }
 
 .control-group {
     flex: 1;
-    min-width: 200px;
+    min-width: 0;
 }
 
 label {
@@ -295,11 +296,11 @@ button:disabled {
 }
 
 .dice-dot {
-    width: 1px;
-    height: 1px;
+    width: 10px; /* Increased from 1px to 10px (10 times bigger) */
+    height: 10px; /* Increased from 1px to 10px (10 times bigger) */
     background-color: var(--text-dark);
     border-radius: 50%;
-    box-shadow: 0 0.2px 0.4px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 /* Dice dot patterns */
