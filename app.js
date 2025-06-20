@@ -64,10 +64,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 const dot = document.createElement('div');
                 dot.className = 'dice-dot';
                 
-                // Add slight random positioning for more natural look
-                const offsetX = (Math.random() - 0.5) * 2;
-                const offsetY = (Math.random() - 0.5) * 2;
-                dot.style.transform = `scale(0.25) translate(${offsetX}px, ${offsetY}px)`;
+                // Add slight random positioning for more natural look (removed transform scaling)
+                const offsetX = (Math.random() - 0.5) * 0.5;
+                const offsetY = (Math.random() - 0.5) * 0.5;
+                if (offsetX !== 0 || offsetY !== 0) {
+                    dot.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+                }
                 
                 dotsContainer.appendChild(dot);
             }
