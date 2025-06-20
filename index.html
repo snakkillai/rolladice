@@ -180,6 +180,100 @@
     
     <!-- Service Worker Registration -->
     <script>
+        // Fallback if app.js doesn't load
+        if (typeof DiceApp === 'undefined') {
+            console.warn('DiceApp class not loaded, using fallback');
+            document.addEventListener('DOMContentLoaded', () => {
+                // Simple fallback functionality
+                const rollBtn = document.getElementById('rollBtn');
+                const clearBtn = document.getElementById('clearBtn');
+                const diceResults = document.getElementById('diceResults');
+                const totalSection = document.getElementById('totalSection');
+                const totalResult = document.getElementById('totalResult');
+                const diceTypeSelect = document.getElementById('diceType');
+                const diceCountSelect = document.getElementById('diceCount');
+
+                function rollDice(sides) {
+                    return Math.floor(Math.random() * sides) + 1;
+                }
+
+                function createDiceFace(value, diceType) {
+                    const diceElement = document.createElement('div');
+                    diceElement.className = 'dice-result rolling';
+                    
+                    const diceFace = document.createElement('div');
+                    diceFace.className = 'dice-face';
+                    
+                    if (diceType === 6 && value <= 6) {
+                        const dotsContainer = document.createElement('div');
+                        dotsContainer.className = `dice-dots dice-${value}`;
+                        
+                        for (let i = 0; i < value; i++) {
+                            const dot = document.createElement('div');
+                            dot.className = 'dice-dot';
+                            dotsContainer.appendChild(dot);
+                        }
+                        
+                        diceFace.appendChild(dotsContainer);
+                    } else {
+                        const numberElement = document.createElement('div');
+                        numberElement.className = 'dice-number';
+                        numberElement.textContent = value;
+                        diceFace.appendChild(numberElement);
+                    }
+                    
+                    diceElement.appendChild(diceFace);
+                    
+                    setTimeout(() => {
+                        diceElement.classList.remove('rolling');
+                    }, 1000);
+                    
+                    return diceElement;
+                }
+
+                function rollDices() {
+                    const diceType = parseInt(diceTypeSelect.value);
+                    const diceCount = parseInt(diceCountSelect.value);
+                    
+                    diceResults.innerHTML = '';
+                    totalSection.classList.add('hidden');
+                    
+                    let total = 0;
+
+                    for (let i = 0; i < diceCount; i++) {
+                        const result = rollDice(diceType);
+                        total += result;
+
+                        setTimeout(() => {
+                            const diceElement = createDiceFace(result, diceType);
+                            diceResults.appendChild(diceElement);
+                        }, i * 200);
+                    }
+
+                    setTimeout(() => {
+                        totalResult.textContent = total;
+                        totalSection.classList.remove('hidden');
+                    }, diceCount * 200 + 1200);
+                }
+
+                function clearResults() {
+                    diceResults.innerHTML = '';
+                    totalSection.classList.add('hidden');
+                }
+
+                rollBtn.addEventListener('click', rollDices);
+                clearBtn.addEventListener('click', clearResults);
+
+                // Keyboard support
+                document.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        rollDices();
+                    }
+                });
+            });
+        }
+
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('sw.js')
