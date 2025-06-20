@@ -115,7 +115,7 @@ body {
 .stats-labels {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 3px; /* Increased by 50% from 2px */
+    margin-bottom: 5px; /* Reduced spacing for tighter alignment */
 }
 
 .stats-values {
@@ -134,13 +134,14 @@ body {
 
 .stat-label {
     color: var(--accent-light);
-    font-size: 0.96em; /* Increased by 50% from 0.64em */
+    font-size: 1.15em; /* Increased by 20% from 0.96em (which was already +50%) */
+    font-weight: bold; /* Made bold */
     white-space: nowrap;
 }
 
 .stat-value {
     color: var(--accent-color);
-    font-size: 1.2em; /* Increased by 50% from 0.8em */
+    font-size: 1.44em; /* Increased by 20% from 1.2em (which was already +50%) */
     font-weight: bold;
     white-space: nowrap;
 }
@@ -723,11 +724,12 @@ button:disabled {
     }
     
     .stat-label {
-        font-size: 0.9em; /* Increased by 50% from 0.6em */
+        font-size: 1.08em; /* Increased by 20% from 0.9em (mobile version) */
+        font-weight: bold; /* Made bold */
     }
     
     .stat-value {
-        font-size: 1.12em; /* Increased by 50% from 0.75em */
+        font-size: 1.34em; /* Increased by 20% from 1.12em (mobile version) */
     }
     
     .dice-result {
