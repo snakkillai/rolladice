@@ -27,7 +27,7 @@ body {
 /* App Header */
 .app-header {
     background: var(--secondary-bg);
-    padding: 15px 20px;
+    padding: 10px 20px;
     box-shadow: var(--shadow-light);
     position: sticky;
     top: 0;
@@ -44,8 +44,9 @@ body {
 
 .app-header h1 {
     color: var(--accent-color);
-    font-size: 1.8em;
+    font-size: 1.5em;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin: 0;
 }
 
 .app-info {
@@ -85,7 +86,7 @@ body {
 .dice-container {
     background: var(--secondary-bg);
     border-radius: 15px;
-    padding: 30px;
+    padding: 20px;
     box-shadow: var(--shadow-heavy);
     max-width: 500px;
     width: 100%;
@@ -96,8 +97,8 @@ body {
 .stats-section {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 25px;
-    padding: 15px;
+    margin-bottom: 15px;
+    padding: 10px;
     background: rgba(255, 255, 255, 0.1);
     border-radius: 10px;
 }
@@ -110,22 +111,22 @@ body {
 .stat-label {
     display: block;
     color: var(--accent-light);
-    font-size: 0.9em;
-    margin-bottom: 5px;
+    font-size: 0.8em;
+    margin-bottom: 3px;
 }
 
 .stat-value {
     display: block;
     color: var(--accent-color);
-    font-size: 1.2em;
+    font-size: 1em;
     font-weight: bold;
 }
 
 /* Controls */
 .controls {
     display: flex;
-    gap: 20px;
-    margin-bottom: 25px;
+    gap: 15px;
+    margin-bottom: 15px;
     flex-wrap: wrap;
 }
 
@@ -224,31 +225,31 @@ button:disabled {
 
 /* Results */
 .results {
-    margin-top: 20px;
+    margin-top: 15px;
 }
 
 .dice-results {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 8px;
     justify-content: center;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 .dice-result {
     background: var(--dice-bg);
     border: 3px solid var(--accent-color);
     border-radius: 15px;
-    width: 80px;
-    height: 80px;
+    width: 65px;
+    height: 65px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 36px;
+    font-size: 28px;
     font-weight: bold;
     color: var(--text-dark);
     text-align: center;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     position: relative;
     animation: rollIn 0.6s ease-out;
 }
@@ -270,13 +271,13 @@ button:disabled {
     display: grid;
     width: 100%;
     height: 100%;
-    padding: 12px;
+    padding: 8px;
     place-items: center;
 }
 
 .dice-dot {
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
     background-color: var(--text-dark);
     border-radius: 50%;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
